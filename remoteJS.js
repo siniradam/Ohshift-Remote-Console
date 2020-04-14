@@ -182,7 +182,7 @@
 	    		open:()=>{
 	    			this.isPaired = true;
 					this.appLog(`Remote Connection opened.`,"log");
-//					this.appLog(`Connected`)
+					//this.appLog(`Connected`)
 					this.send.handshake();
 					this.isConnected = true;
 	    		},

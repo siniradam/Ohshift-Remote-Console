@@ -20,3 +20,17 @@ A simple tool for monitoring console logs remotly via WebRTC connection.
 
 ## Caution
 ES6 codes used, may not work in old browsers.
+
+#ToDo
+- XHR Capture
+- Click Capture
+
+
+#Changelog 
+
+## 0.0.1
+- Theme selector added
+- Remote Console methods moved to class
+- HLJS parser removed, replaced with a simpler one.
+- HLJS styling used.
+- Other various styling updates.

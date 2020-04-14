@@ -1,0 +1,61 @@
+*{
+    margin:0px;padding:0px;
+}
+html,body{
+    width:100vw;height: 100vh;
+    background: #303540;
+    font-family: arial;
+}
+
+pre{
+    overflow: hidden;
+}
+
+code {
+    overflow: auto;
+}
+
+pre,code{
+    width:100vw;
+    height: calc(90vh - 41px);
+}
+.remoteInfo{
+    color:#abb2bf;
+    line-height: 28px;
+    height: 28px;
+    background-color: #1b1e25;
+    font-size: 11pt;
+}
+
+.remoteInfo .datetime{
+    float:left;
+    margin-right: 10px;
+    padding: 0 6px;
+}
+
+.remoteInfo .ua{
+    float: left;
+    max-width: calc(100vw - 120px);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.remoteInfo .relayToConsole{
+    float: right;
+    margin: 6px;
+}
+
+.controlpanel {
+    display: flex !important;
+    height: 10vh;
+}
+
+.controlpanel fieldset{
+    flex:1;
+    margin: 5px;
+    padding: 5px;
+}
+
+.controlpanel fieldset button {
+    padding: 3px;
+}

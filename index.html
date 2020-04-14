@@ -2,146 +2,49 @@
 <html>
 <head>
 	<title>RemoteJS Console (Receiver)</title>
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
-	<link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/atom-one-dark-reasonable.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-	<style type="text/css">
-		*{
-			margin:0px;padding:0px;
-		}
-		html,body{
-			width:100vw;height: 100vh;
-			background: #303540;
-		}
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script src="assets/js/console.js"></script>
 
-		pre,code{
-			width:100vw;
-			height: calc(90vh - 41px);
-		}
-		.remoteInfo{
-			color:#abb2bf;
-			line-height: 28px;
-			height: 28px;
-			background-color: #1b1e25;
-			font-family: arial;
-		}
-
-		.remoteInfo .datetime{
-			float:left;
-			margin-right: 10px
-		}
-
-		.remoteInfo .ua{
-		    float: left;
-		    width: calc(100vw - 120px);
-		    overflow: hidden;
-		    white-space: nowrap;
-		}
-
-		.remoteInfo .relayToConsole{
-			float: right;
-		    margin: 6px;
-		}
-	</style>
-	<script type="text/javascript">
-		
-	function remoteConsole(ID){
-		let holder = document.getElementById("logs")
-		let peerJSPath = "https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"
-	    let peerJS = document.createElement('script');
-		    peerJS.setAttribute("type", "text/javascript");
-		    peerJS.setAttribute("src", peerJSPath);
-
-		const cons = {}
-			let totalMsg = 0;
-			let addConsole = (msg)=>{
-				holder.appendChild(document.createTextNode(`${msg}\n`))
-			}
-		    peerJS.onload = ()=>{
-		    	console.log("#RS: Loaded");
-
-		    	const peer = new Peer(ID,{});//{key: ID}
-
-				peer.on('open', function(id) {
-					cons.id = id
-					console.log("RS: Open",id)
-					addConsole(`# Ready to accept messages on ${ID}`)
-				})
-
-				peer.on('connection', (conn)=>{
-						console.log("RS: Connection");
-						addConsole(`# Client Connected`)
-						conn.on('data', function(data) {
-							totalMsg++
-
-							if(typeof data =="object" && typeof data.type == "string"){
-								switch(data.type){
-
-									case "handshake":
-										console.log(data)
-										document.querySelector('.datetime').innerText = data.handshake.time
-										document.querySelector('.ua').innerText = data.handshake.ua
-									break;
-
-									case "log":
-										//Console
-										if(document.getElementById('relayToConsole').checked){
-											console.log(data.log);
-										}
-										//GUI
-										addConsole(`${JSON.stringify(data.log)}`)
-									break;
-								}
-							}
-
-							if(totalMsg % 10 === 0){
-								hljs.highlightBlock(document.getElementById("logs"));
-							}
-
-
-						});//On-Data
-
-						conn.on("disconnect",()=>{
-							addConsole(`DISCONNECT\n`)
-						})
-						conn.on("close",()=>{
-							addConsole(`Closed\n`)
-						})
-
-						hljs.highlightBlock(holder);//InitColors
-
-						/*
-			    		conn.on('open', function() {
-			    			console.log("RS: Connection opened");
-
-
-			    		});//On-Open
-			    		*/
-			    	});//On-Connection
-
-
-		    	//ConsoleLog Overwrite
-		    };//
-		    document.getElementsByTagName("head")[0].appendChild(peerJS);
-
-	}
-
-	function isJSON(data){
-		try{ return JSON.parse(data) }
-		catch{ return data }
-	}
-
-
-	</script>
+	<link class="codestyle" rel="stylesheet" data-name="atom-one-dark-reasonable" href="https://highlightjs.org/static/demo/styles/atom-one-dark-reasonable.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="default" href="https://highlightjs.org/static/demo/styles/default.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="solarized-dark" href="https://highlightjs.org/static/demo/styles/solarized-dark.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="solarized-light" href="https://highlightjs.org/static/demo/styles/solarized-light.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="github" href="https://highlightjs.org/static/demo/styles/github.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="railscasts" href="https://highlightjs.org/static/demo/styles/railscasts.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="monokai-sublime" href="https://highlightjs.org/static/demo/styles/monokai-sublime.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="mono" href="https://highlightjs.org/static/demo/styles/mono-blue.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="tomorrow" href="https://highlightjs.org/static/demo/styles/tomorrow.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="color" href="https://highlightjs.org/static/demo/styles/color-brewer.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="zenburn" href="https://highlightjs.org/static/demo/styles/zenburn.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="agate" href="https://highlightjs.org/static/demo/styles/agate.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="androidstudio" href="https://highlightjs.org/static/demo/styles/androidstudio.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="dracula" href="https://highlightjs.org/static/demo/styles/dracula.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="rainbow" href="https://highlightjs.org/static/demo/styles/rainbow.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="vs" href="https://highlightjs.org/static/demo/styles/vs.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="atom-one-dark" href="https://highlightjs.org/static/demo/styles/atom-one-dark.css">
+	<link class="codestyle" disabled rel="stylesheet" data-name="atom-one-light" href="https://highlightjs.org/static/demo/styles/atom-one-light.css">
 </head>
 <body>
 	<div class="remoteInfo">
 		<div class="datetime"></div>
 		<div class="ua"></div>
-		<input type="checkbox" name="relayToConsole" id="relayToConsole" class="relayToConsole">
 	</div>
-	<pre><code class="language-js" id="logs"></code></pre>
-	<script>hljs.initHighlightingOnLoad();</script>
-	<script type="text/javascript">remoteConsole("testConsole")</script>
+	<pre><code class="language-js hljs json" id="logs"></code></pre>
+	<div class="controlpanel">
+		<fieldset class="hljs-variable">
+			<legend class="hljs-attribute">Console</legend>
+			<input type="checkbox" name="relayToConsole" id="relayToConsole" title="Relay to console" class="relayToConsole"> Relay To Console
+		</fieldset>
+
+		<fieldset class="hljs-variable">
+			<legend class="hljs-attribute">Interface</legend>
+			<select id="themes"></select>
+			<button id="setTheme">Set Theme</button>
+		</fieldset>
+	</div>
+
+	<script type="text/javascript">
+		const ohc = new ohShiftConsole("testConsole");
+	</script>
 </body>
 </html>
