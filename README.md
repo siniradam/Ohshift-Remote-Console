@@ -16,7 +16,7 @@ A simple tool for monitoring console logs remotly via WebRTC connection.
 # Used Libraries
 - PeerJS https://peerjs.com/
 - Highlight JS https://highlightjs.org/
-
+- UA-Parser https://github.com/faisalman/ua-parser-js
 
 ## Caution
 ES6 codes used, may not work in old browsers.
@@ -25,9 +25,13 @@ ES6 codes used, may not work in old browsers.
 - Click Capture
 - XHR Error Capture
 - Log Screen single-line fix.
-- Clear console button.
 
 # Changelog 
+
+## 0.0.3
+- Interface updates
+- Clear console button added.
+- User agent parser added.
 
 ## 0.0.2
 - XHR Request capture added

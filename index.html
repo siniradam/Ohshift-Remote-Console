@@ -4,6 +4,7 @@
 	<title>RemoteJS Console (Receiver)</title>
 	<link rel="stylesheet" href="assets/css/style.css">
 	<script src="assets/js/console.js"></script>
+	<script src="assets/js/ua-parser.js"></script>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="expires" content="-1">
 
@@ -33,15 +34,17 @@
 	</div>
 	<pre><code class="language-js hljs json" id="logs"></code></pre>
 	<div class="controlpanel">
-		<fieldset class="hljs-variable">
-			<legend class="hljs-attribute">Console</legend>
-			<input type="checkbox" name="relayToConsole" id="relayToConsole" title="Relay to console" class="relayToConsole"> Relay To Console
+		<fieldset class="">
+			<legend class="">Console</legend>
+			<input type="checkbox" name="relayToConsole" id="relayToConsole" title="Relay to console" class="relayToConsole"> Relay To Console <br>
+			<button id="clearConsole">Clear Console</button>
 		</fieldset>
 
-		<fieldset class="hljs-variable">
-			<legend class="hljs-attribute">Interface</legend>
-			<select id="themes"></select>
-			<button id="setTheme">Set Theme</button>
+		<fieldset class="">
+			<legend class="">Interface</legend>
+			<select id="themes"></select> <br>
+			<div class="remote browser" id="rbrowser"></div>
+			<div class="remote operatingsystem" id="ros"></div>			
 		</fieldset>
 	</div>
 

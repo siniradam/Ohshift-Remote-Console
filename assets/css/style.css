@@ -9,6 +9,8 @@ html,body{
 
 pre{
     overflow: hidden;
+    margin: 8px;
+    border-radius: 10px;
 }
 
 code {
@@ -16,8 +18,8 @@ code {
 }
 
 pre,code{
-    width:100vw;
-    height: calc(90vh - 41px);
+    width: calc(100vw - 16px);
+    height: calc(90vh - 50px);
 }
 .remoteInfo{
     color:#abb2bf;
@@ -34,10 +36,11 @@ pre,code{
 }
 
 .remoteInfo .ua{
-    float: left;
+    float: right;
     max-width: calc(100vw - 120px);
     overflow: hidden;
     white-space: nowrap;
+    padding: 0 6px;
 }
 
 .remoteInfo .relayToConsole{
@@ -48,12 +51,17 @@ pre,code{
 .controlpanel {
     display: flex !important;
     height: 10vh;
+    color:#98c379;
 }
 
 .controlpanel fieldset{
     flex:1;
     margin: 5px;
     padding: 5px;
+}
+
+.controlpanel legend{
+    color:#56b6c2;
 }
 
 .controlpanel fieldset button {

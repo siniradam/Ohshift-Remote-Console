@@ -2,10 +2,11 @@
 class ohShiftConsole {
 
     constructor(channelName){
-        this.version = "0.0.2";
-        this.channelName = channelName
+        this.version = "0.0.3";
+        this.channelName = channelName;
         this.cons = {};
         this.init();
+        this.remote = {};
     }
 
 
@@ -14,7 +15,7 @@ class ohShiftConsole {
         this.holder = document.getElementById("logs")
 
         //PeerJS
-        let peerJSPath = "https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"
+        let peerJSPath = "https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js";
         this.peerJS = document.createElement('script');
         this.peerJS.setAttribute("type", "text/javascript");
         this.peerJS.setAttribute("src", peerJSPath);
@@ -61,6 +62,11 @@ class ohShiftConsole {
                         console.log(data)
                         document.querySelector('.datetime').innerText = data.handshake.time
                         document.querySelector('.ua').innerText = data.handshake.ua
+                        this.remote = {
+                            ua:new UAParser(data.handshake.ua),
+                            time:data.handshake.time
+                        }
+                        this.gui.showRemoteDetails(this.remote);
                     break;
 
                     case "xhr":
@@ -155,9 +161,16 @@ class ohShiftConsole {
                 }
             });
 
-            document.getElementById("setTheme").onclick = this.utils.setTheme;
-        },
+            document.getElementById("themes").onchange = this.gui.setTheme
+            document.getElementById("clearConsole").onclick = this.gui.clearConsole;
+        }
+    }
 
+    gui = {
+        clearConsole:()=>{
+            document.getElementById("logs").innerHTML = "";
+            this.console.comment(`# Console Cleared.`)
+        },
         setTheme:()=>{
             let name = document.getElementById("themes").value;
             let list = document.getElementsByClassName('codestyle')
@@ -168,6 +181,14 @@ class ohShiftConsole {
                     el.disabled = true;
                 }
             });
+        },
+
+        showRemoteDetails(remote){
+            console.log(this.remote)
+            let b = remote.ua.getBrowser();
+            let os = remote.ua.getOS();
+            document.getElementById("rbrowser").innerHTML = `${b.name} / ${b.version} / ${b.major}`
+            document.getElementById("ros").innerHTML = `${os.name} / ${os.version}`
         }
     }
     
