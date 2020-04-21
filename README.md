@@ -25,6 +25,10 @@ ES6 codes used, may not work in old browsers.
 - Click Capture
 - XHR Error Capture
 - Log Screen single-line fix.
+- Push cached events on reconnect.
+
+# Issues
+- Reconnect feature on disconnect sometimes not working
 
 # Changelog 
 
