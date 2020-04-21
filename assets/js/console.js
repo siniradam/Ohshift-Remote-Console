@@ -2,7 +2,7 @@
 class ohShiftConsole {
 
     constructor(channelName){
-        this.version = "0.0.1";
+        this.version = "0.0.2";
         this.channelName = channelName
         this.cons = {};
         this.init();
@@ -61,6 +61,18 @@ class ohShiftConsole {
                         console.log(data)
                         document.querySelector('.datetime').innerText = data.handshake.time
                         document.querySelector('.ua').innerText = data.handshake.ua
+                    break;
+
+                    case "xhr":
+                        //Console
+                        if(document.getElementById('relayToConsole').checked){
+                            console.log(data.log);
+                        }
+
+                        //GUI
+                        this.console.add(`[XHR Request]`)
+                        this.console.add(`${this.console.syntaxHighlight(JSON.stringify(data.xhr))}`)
+
                     break;
 
                     case "log":

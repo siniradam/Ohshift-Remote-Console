@@ -80,11 +80,13 @@
         function xhr(){
             $.ajax({
                 url:"/",
-                success:function(){
-                    console.log("XHR Success")
+                success:function(data){
+                    //console.log("XHR Success")
+                    //console.info(data)
                 },
-                error:function(){
+                error:function(err){
                     console.log("XHR Error")
+                    console.info(err)
                 }
             })
         }

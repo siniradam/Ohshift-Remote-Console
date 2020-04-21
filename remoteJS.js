@@ -98,16 +98,19 @@
 				//XHR
 				//https://stackoverflow.com/a/27363569/502649
 				var origOpen = XMLHttpRequest.prototype.open;
-				XMLHttpRequest.prototype.open = (...b) => {
+				var onXHR = this.on.xhr;
+				XMLHttpRequest.prototype.open = function(...b) {
 					let request = { }//method:b 
 					this.addEventListener('load', (e) => {
-						request.url = e.targseet.responseURL;
+						console.info(e)
+						request.url = e.target.responseURL;
 						request.type = e.type;
-						request.status = e.status;
-						request.state = e.target.readyState
-						this.on.xhr(request)
+						request.status = e.target.status;
+						request.state = e.target.readyState;
+						request.result = e.target.responseText;
+						onXHR(request);
 					});
-					origOpen.apply(this, ...b);
+					origOpen.apply(this, [...b]);
 				};
 
 			}

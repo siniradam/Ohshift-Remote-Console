@@ -21,12 +21,16 @@ A simple tool for monitoring console logs remotly via WebRTC connection.
 ## Caution
 ES6 codes used, may not work in old browsers.
 
-#ToDo
-- XHR Capture
+# ToDo
 - Click Capture
+- XHR Error Capture
+- Log Screen single-line fix.
+- Clear console button.
 
+# Changelog 
 
-#Changelog 
+## 0.0.2
+- XHR Request capture added
 
 ## 0.0.1
 - Theme selector added
